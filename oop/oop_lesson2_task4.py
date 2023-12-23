@@ -53,7 +53,6 @@ class Student(Lector):
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        self.all_student = []
     def average(self):
         b = list(self.grades.values())
         c = []
@@ -76,7 +75,6 @@ class Student(Lector):
                 lector.lector_grades[course] = [grade]
         else:
             return "Ошибка"
-
 
 best_student = Student('Ruoy', 'Eman', 'man')
 best_student.courses_in_progress += ['Python']
@@ -115,6 +113,36 @@ best_student.rate_hw(second_lector, 'Python', 7)
 best_student.rate_hw(second_lector, 'Python', 3)
 best_student.rate_hw(second_lector, 'Python', 4)
 
+
+all_student_list = [best_student, second_student]
+def all_student_average(list_student, course):
+    all_average_count = 0
+    all_grade_count = 0
+    list_1 = []
+    for j in list_student:
+        if isinstance(j, Student) and course in j.courses_in_progress:
+            list_1.append(j.grades)
+    for i in list_1:
+        all_average_count += sum(i[course])
+        all_grade_count += len(i[course])
+        b = all_average_count / all_grade_count
+    return f"Средняя оценка студентов из курса ({course}): {b}"
+
+all_lector_list = [cool_lector, second_lector]
+def all_lector_average(list_lector, course):
+    all_average_count = 0
+    all_grade_count = 0
+    list_1 = []
+    for j in list_lector:
+        if isinstance(j, Lector) and course in j.courses_attached:
+            list_1.append(j.lector_grades)
+    for i in list_1:
+        all_average_count += sum(i[course])
+        all_grade_count += len(i[course])
+    b = all_average_count / all_grade_count
+    return f"Средняя оценка лекторов на курсе ({course}): {b}"
+
+
 print(reviewer_1)
 print(cool_lector)
 print(best_student)
@@ -130,6 +158,9 @@ print(best_student > second_student)
 print(best_student <= second_student)
 print(best_student >= second_student)
 print(best_student != second_student)
-print(best_student == second_student)
+print(best_student == second_student, '\n')
+
+print(all_student_average(all_student_list, 'Python'))
+print(all_lector_average(all_lector_list, 'Python'))
 
 
