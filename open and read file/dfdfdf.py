@@ -25,11 +25,3 @@ with open('recipes.txt', encoding='utf-8') as file:
     append_ingridient('Фахитос', 5)
 
 pprint(cook_book, width=100)
-
-
-
-
-
-
-
-

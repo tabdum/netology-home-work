@@ -24,11 +24,18 @@ with open('recipes.txt', encoding='utf-8') as file:
     append_ingridient('Запеченный картофель', 3)
     append_ingridient('Фахитос', 5)
 
-pprint(cook_book, width=100)
+dishes_list = ["Запеченный картофель", 'Омлет']
+def get_shop_list_by_dishes(dishes, person_count):
+    cook_book_copy = cook_book.copy()
+    dishes_dict = {}
+    for dish in dishes:
+        b = cook_book_copy[dish]
+        for i in b:
+            i["quantity"] = str(int(i["quantity"]) * person_count)
+        dishes_dict[dish] = cook_book_copy[dish]
+    return dishes_dict
 
-
-
-
+pprint(get_shop_list_by_dishes(dishes_list, 2), width=100)
 
 
 
