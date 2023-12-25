@@ -38,5 +38,3 @@ def get_shop_list_by_dishes(dishes, person_count):
 pprint(get_shop_list_by_dishes(dishes_list, 2), width=100)
 
 
-
-
