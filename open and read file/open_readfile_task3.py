@@ -9,7 +9,6 @@ def lister(file_name):
     with open(file_name) as fs:
         file_1 = []
         for line in fs:
-            # b = line.strip("\n")
             file_1.append(line)
     return file_1
 
