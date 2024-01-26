@@ -1,33 +1,75 @@
 CREATE TABLE genre
 (
-	genre_id int NOT NULL PRIMARY KEY,
+	genre_id SERIAL PRIMARY KEY,
 	genre_name VARCHAR(30) NOT NULL
 	
 );
 
 CREATE TABLE executor
 (
-	executor_id int NOT NULL PRIMARY KEY,
+	executor_id SERIAL PRIMARY KEY,
 	executor_name VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE albom
 (
-	albom_id int NOT NULL PRIMARY KEY,
+	albom_id SERIAL PRIMARY KEY,
 	albom_name VARCHAR(30) NOT NULL,
 	year_of_issue date NOT NULL	
 );
 
 CREATE TABLE trake
 (
-	trake_id int NOT NULL PRIMARY KEY,
+	trake_id SERIAL PRIMARY KEY,
 	trake_name VARCHAR(30) NOT NULL,
-	duration time NOT NULL	
+	duration integer NOT NULL,
+	fk_albom_id int REFERENCES albom(albom_id)
 );
 
 CREATE TABLE collection
 (
-	collection_id int NOT NULL PRIMARY KEY,
+	collection_id SERIAL PRIMARY KEY,
+	collection_name VARCHAR(30) NOT NULL,
+	year_of_issue date NOT NULL	
+);
+
+
+CREATE TABLE genre_executor
+(
+	genre_id int REFERENCES genre(genre_id),
+	executor_id int REFERENCES executor(executor_id),
+	CONSTRAINT genre_executor_pkey PRIMARY KEY(genre_id, executor_id)
+CREATE TABLE genre
+(
+	genre_id SERIAL PRIMARY KEY,
+	genre_name VARCHAR(30) NOT NULL
+	
+);
+
+CREATE TABLE executor
+(
+	executor_id SERIAL PRIMARY KEY,
+	executor_name VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE albom
+(
+	albom_id SERIAL PRIMARY KEY,
+	albom_name VARCHAR(30) NOT NULL,
+	year_of_issue date NOT NULL	
+);
+
+CREATE TABLE trake
+(
+	trake_id SERIAL PRIMARY KEY,
+	trake_name VARCHAR(30) NOT NULL,
+	duration integer NOT NULL,
+	fk_albom_id integer REFERENCES albom(albom_id) NOT NULL
+);
+
+CREATE TABLE collection
+(
+	collection_id SERIAL PRIMARY KEY,
 	collection_name VARCHAR(30) NOT NULL,
 	year_of_issue date NOT NULL	
 );
@@ -77,8 +119,8 @@ VALUES
 
 INSERT INTO trake
 VALUES
-(1, 'trake1', '04:01'),
-(2, 'trake2', '04:02');
+(1, 'trake1', '2323', 1),
+(2, 'trake2', '421424', 2);
 
 INSERT INTO collection
 VALUES
@@ -112,3 +154,5 @@ VALUES
 (2, 2),
 (3, 1),
 (3, 2);
+
+
