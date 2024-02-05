@@ -1,4 +1,4 @@
-SELECT genre_name, COUNT(*) 
+SELECT genre_name, COUNT(*)  
 FROM genre_executor
 JOIN genre ON genre_executor.genre_id = genre.genre_id
 GROUP BY genre_name
@@ -14,13 +14,14 @@ FROM trake
 JOIN albom ON fk_albom_id = albom_id
 GROUP BY albom_name;
 
-SELECT executor_name
-FROM executor
-WHERE executor_id NOT IN (SELECT executor_id 
-		          FROM albom_executor 
-		          WHERE albom_id NOT IN (SELECT albom_id 
-		          	                 FROM albom 
-		          	                 WHERE year_of_issue != '2020'));
+SELECT executor_name FROM executor
+	WHERE executor_name NOT IN (
+		SELECT DISTINCT executor_name FROM executor e
+		LEFT JOIN albom_executor ae ON e.executor_id = ae.executor_id
+		LEFT JOIN albom al ON ae.albom_id = al.albom_id
+		WHERE al.year_of_issue = 2020
+		)
+	ORDER BY executor_name
 
 SELECT DISTINCT(collection_name)
 FROM collection cn
