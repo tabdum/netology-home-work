@@ -146,4 +146,4 @@ if __name__ == '__main__':
     database_meneger.find_customer(name='Alex') #! Находим клиента по имени
     database_meneger.find_customer(lastname='Beregovskiy') #! Находим клиента по Фамилии
     database_meneger.find_customer(email='beregovskiy@bk.ru') #! Находим клиента по почте
-    database_meneger.garant_zachyota()
+    database_meneger.garant_zachyota() #! сюрприз
