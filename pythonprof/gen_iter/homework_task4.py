@@ -1,5 +1,5 @@
 import types
-
+from itertools import chain
 
 def flat_generator(list_of_list):
     def liner(listt):
@@ -35,3 +35,11 @@ def test_4():
 
 if __name__ == '__main__':
     test_4()
+    list_of_lists_2 = [
+        [['a'], ['b', 'c']],
+        ['d', 'e', [['f'], 'h'], False],
+        [1, 2, None, [[[[['!']]]]], []]
+    ]
+    print(*chain(list_of_lists_2))
+
+
